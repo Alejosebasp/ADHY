@@ -28,7 +28,8 @@
 # A simple disassembler for the 8080 CPU.
 
 import binascii
-import dis_helper as dh
+from src import dis_helper as dh
+
 
 def desensamblar(source):
 	#GLOBAL
