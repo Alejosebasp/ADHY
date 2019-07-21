@@ -30,12 +30,11 @@
 import binascii
 from src import dis_helper as dh
 
-
-def desensamblar(source):
+def desensamblar(ruta, name):
 	#GLOBAL
 	# Get the file to disassemble, then create the output file name ("dis_filename")
-	source = source
-	filename = source.split('.')[0] + "_dis.txt"
+	source = ruta + "\\" + name
+	filename = ruta + '\\' + name + "_dis.txt"
 
 	#Read the file
 	with open(source, "rb") as f:
