@@ -1,4 +1,4 @@
-from src import dis
+from src import disassembly
 import os
 
 if __name__ == '__main__':
@@ -6,5 +6,5 @@ if __name__ == '__main__':
     #desemamblando archivo
     dirpath = os.getcwd()+ r"\..\inputs"
     print(dirpath)
-    dis.desensamblar(dirpath, "invaders")
+    disassembly.desensamblar(dirpath, "invaders")
     print("listo")
