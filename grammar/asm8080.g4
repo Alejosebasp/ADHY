@@ -70,7 +70,7 @@ lbl
    ;
 
 expressionlist
-   : expression (',' expression)*
+   : expression ((',' expression)*)?
    ;
 
 label

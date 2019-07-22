@@ -11,7 +11,7 @@ if __name__ == '__main__':
     #Desensamblando archivo hexadecimal a ASM8080.
     print("Iniciando proceso de desensamblaje...")
     dirpath = os.getcwd()+ r"\..\inputs"
-    nameFile = "test"
+    nameFile = "whileif"
     disassembly.desensamblar(dirpath, nameFile)
     print("Proceso de desensamblaje completado...")
 
@@ -26,6 +26,7 @@ if __name__ == '__main__':
 
         # Recorrer el arbol mediante Listeners.
         print("Recorriendo el arbol y traduciendo el código...")
+        print("")
         RegisterPrint = Listerners()
         walker = ParseTreeWalker()
         walker.walk(RegisterPrint, tree)
