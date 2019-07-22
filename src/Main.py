@@ -9,19 +9,26 @@ from src.listenersASM8080 import Listerners
 if __name__ == '__main__':
 
     #Desensamblando archivo hexadecimal a ASM8080.
+    print("Iniciando proceso de desensamblaje...")
     dirpath = os.getcwd()+ r"\..\inputs"
-    print(dirpath)
-    disassembly.desensamblar(dirpath, "invaders")
-    print("listo")
+    nameFile = "test"
+    disassembly.desensamblar(dirpath, nameFile)
+    print("Proceso de desensamblaje completado...")
 
     #Leyendo archivo de entrada para ANTLR.
-    inputStream = FileStream(r"C:\Users\Alejosebasp\Documents\UNAL\Lenguajes\ADHY\inputs\invaders_dis.txt")
-    lexer = Lexer(inputStream)
-    stream = CommonTokenStream(lexer)
-    parser = Parser(stream)
-    tree = parser.prog()
+    print("abriendo archivo del código fuente...")
+    try:
+        inputStream = FileStream(dirpath + "\\" + nameFile + "_dis.txt")
+        lexer = Lexer(inputStream)
+        stream = CommonTokenStream(lexer)
+        parser = Parser(stream)
+        tree = parser.prog()
 
-    #Recorrer el arbol mediante Listeners.
-    RegisterPrint = Listerners()
-    walker = ParseTreeWalker()
-    walker.walk(RegisterPrint, tree)
+        # Recorrer el arbol mediante Listeners.
+        print("Recorriendo el arbol y traduciendo el código...")
+        RegisterPrint = Listerners()
+        walker = ParseTreeWalker()
+        walker.walk(RegisterPrint, tree)
+
+    except:
+        print("Error abriendo archivo del código fuente :c")
