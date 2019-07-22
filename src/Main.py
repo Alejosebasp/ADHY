@@ -4,28 +4,24 @@ from antlr4 import *
 
 from gen.asm8080Lexer import asm8080Lexer as Lexer
 from gen.asm8080Parser import asm8080Parser as Parser
-from gen.asm8080Listener import asm8080Listener as Listener
-from gen.asm8080Visitor import asm8080Visitor as Visitor
-
-class listenerRegister(Listener):
-    def enterRegister_(self, ctx:Parser.Register_Context):
-        print(ctx.getText())
+from src.listenersASM8080 import Listerners
 
 if __name__ == '__main__':
 
-    #desemamblando archivo
+    #Desensamblando archivo hexadecimal a ASM8080.
     dirpath = os.getcwd()+ r"\..\inputs"
     print(dirpath)
     disassembly.desensamblar(dirpath, "invaders")
     print("listo")
 
+    #Leyendo archivo de entrada para ANTLR.
     inputStream = FileStream(r"C:\Users\Alejosebasp\Documents\UNAL\Lenguajes\ADHY\inputs\invaders_dis.txt")
-
     lexer = Lexer(inputStream)
     stream = CommonTokenStream(lexer)
     parser = Parser(stream)
     tree = parser.prog()
 
-    RegisterPrint = listenerRegister()
+    #Recorrer el arbol mediante Listeners.
+    RegisterPrint = Listerners()
     walker = ParseTreeWalker()
     walker.walk(RegisterPrint, tree)
